@@ -15,13 +15,13 @@
 <% @users.each do |user| %>
   <div class="col-sm-6 col-md-4 all-tweets">
     <div class="single-tweet">
-      <%= image_tag(user.avatar, height: '32', width: '32') %>
+      <%= 'user.avatar' %>
         <p>
           <%= user.name %>
           <em>
             <% if user.admin? %>
               <li>
-                <%= image_tag('admin-logo', width: '50px') %>
+                <%= 'admin' %>
               </li>
             <% end %>
           </em>

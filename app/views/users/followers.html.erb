@@ -17,7 +17,7 @@
             <% @followers.each do |follower| %>
             <li class="list-group-item">
               <%= link_to tweets_user_path(follower) do %>
-              <%= image_tag(follower.avatar, height: 30, width: 30, class: "img-circle") %>
+              <%= 'follower.avatar' %>
               <%= "@#{follower.name}" %>
               <% end %>
               <p><%= follower.introduction %></p>
