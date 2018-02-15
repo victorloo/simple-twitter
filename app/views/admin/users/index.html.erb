@@ -12,31 +12,36 @@
   </div>
 </div>
 
-<% @users.each do |user| %>
-  <div class="col-sm-6 col-md-4 all-tweets">
-    <div class="single-tweet">
-      <%= 'user.avatar' %>
-        <p>
-          <%= user.name %>
-          <em>
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered">
+      <tr>
+        <th>#</th>
+        <th>Avatar</th>
+        <th>Name</th>
+        <th>Admin</th>
+        <th>Tweets Count</th>
+        <th>Followings Count</th>
+        <th>Followers Count</th>
+        <th>Likes Count</th>
+      </tr>
+      
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= image_tag(user.avatar, height: '32', width: '32') %></td>
+          <td><%= user.name %></td>
+          <td>
             <% if user.admin? %>
-              <li>
-                <%= 'admin' %>
-              </li>
+              <%= image_tag('admin-logo', height: '32', width: '32') %>
             <% end %>
-          </em>
-        </p>
-        <p>Introduction:</p>
-        <p><%= user.introduction %></p>
-        <br>
-        <p><%= "Tweet(#{Tweet.where(:user_id => user).length})" %></p>
-        <br>
-        <p><%= "Following(#{Followship.where(:user_id => user).length})" %></p>
-        <br>
-        <p><%= "Follower(#{Followship.where(:following_id => user).length})" %></p>
-        <br>
-        <p><%= "Like()" %></p>
-        <hr>
-    </div>
+          </td>
+          <td><%= "Tweet(#{Tweet.where(:user_id => user).length})" %></td>
+          <td><%= "Following(#{Followship.where(:user_id => user).length})" %></td>
+          <td><%= "Follower(#{Followship.where(:following_id => user).length})" %></td>
+          <td><%= "Like(#{Tweet.where(:user_id => user).pluck(:likes_count).sum})" %></td>
+        </tr>
+      <% end %>      
+    </table>
   </div>
-  <% end %>
+</div>

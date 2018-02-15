@@ -11,13 +11,13 @@ class User < ApplicationRecord
   # 並參考 Devise 文件自訂表單後通過 Strong Parameters 的方法
   validates_presence_of :name
   # 加上驗證 name 不能重覆 (關鍵字提示: uniqueness)
-  validates :name, presence: true, uniqueness: { scope: :email }
+  validates_uniqueness_of(:name)
   
   #處理tweet的關聯
-  has_many :tweets, class_name: "Tweet", foreign_key: "reference_id"
+  has_many :tweets, class_name: "Tweet", foreign_key: "user_id"
   
   #處理reply的關聯
-  has_many :replis, class_name: "Reply", foreign_key: "reference_id", dependent: :restrict_with_error
+  has_many :replis, class_name: "Reply", foreign_key: "user_id", dependent: :restrict_with_error
   has_many :tweets, through: :replies, source: :reply
 
   #處理like的關聯
