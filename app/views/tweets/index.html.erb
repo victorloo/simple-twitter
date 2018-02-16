@@ -64,14 +64,6 @@
     </div>
     <!-- 顯示追蹤數前10的使用者 -->
     <div class="col-xs-12 col-md-8" id="right-col">
-<<<<<<< HEAD
-      <div class="popular">
-          <% @users.each do |user| %>
-          <div class="user-item">
-            <%= 'user.avatar' %>
-            <div class="caption">
-              <h2>@<%= user.name %></h2>
-=======
       <% @users.each do |user| %>
         <div class="single-tweet">
           <div class="user-avatar">
@@ -89,7 +81,6 @@
             </div>
             <div class="user-introduction">
               <%= user.introduction.truncate(70) %>
->>>>>>> 16dcfb1d13b6e392b9c582a7f28b7ff6d09c4414
             </div>
             <div class="user-re-li">
               <% if user != current_user %>
